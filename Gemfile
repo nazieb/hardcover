@@ -20,6 +20,6 @@ gem "bunny", "~> 0.7.9"
 
 group :test do
   gem "rspec-rails"
-  gem 'coveralls', '= 0.7.3'
+  gem 'coveralls', require: false
   gem 'webmock'
 end
