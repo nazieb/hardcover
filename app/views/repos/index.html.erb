@@ -1,0 +1,6 @@
+<% unless @repos.blank? %>
+  <%= render partial: "shared/search" %>
+  <%= render partial: "repos", repos: @repos %>
+<% else %>
+  <p>Nothing to show :(</p>
+<% end %>

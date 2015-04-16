@@ -1,0 +1,10 @@
+<ul class="list">
+  <% @source_files.each do |source_file| %>
+    <li class="<%= coverage_class(source_file.coverage_percentage) %>">
+      <div>
+        <%= link_to(source_file.name, source_file_path(@job.repo.login, @job.repo.name, @job, source_file.id)) %>
+        <%= source_file.coverage_percentage %>% covered
+      </div>
+    </li>
+  <% end %>
+</ul>

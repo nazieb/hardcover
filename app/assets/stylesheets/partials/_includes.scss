@@ -1,0 +1,8 @@
+// Many compass modules use guarded assignment to allow you to set defaults for
+// that module. In order for these configurable variables to work correctly,
+// you must set the variables before you import the module.
+
+@import "compass";
+@import "colors";
+@import "fonts";
+@import "reset";

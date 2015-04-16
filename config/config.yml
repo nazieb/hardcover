@@ -1,0 +1,35 @@
+development:
+  # Jenkins Config
+  jenkins_base_url: "http://ci.example.com"
+  jenkins_use_ssl: false
+  # Github config
+  # Access token from user used for commenting on PullRequests
+  github_user_access_token: ""
+  github_api_endpoint: "https://github.com/api/v3"
+  github_web_endpoint: "https://github.com"
+  github_application_key: ""
+  github_application_secret: ""
+
+development:
+  # Jenkins Config
+  jenkins_base_url: "http://ci.example.com"
+  jenkins_use_ssl: false
+  # Github config
+  # Access token from user used for commenting on PullRequests
+  github_user_access_token: ""
+  github_api_endpoint: "https://github.com/api/v3"
+  github_web_endpoint: "https://github.com"
+  github_application_key: ""
+  github_application_secret: ""
+
+test:
+  # Jenkins Config
+  jenkins_base_url: "http://ci.example.com"
+  jenkins_use_ssl: false
+  # Github config
+  # Access token from user used for commenting on PullRequests
+  github_user_access_token: ""
+  github_api_endpoint: "https://github.com/api/v3"
+  github_web_endpoint: "https://github.com"
+  github_application_key: ""
+  github_application_secret: ""

@@ -1,0 +1,39 @@
+.search {
+  @include display-flex(flex);
+  @include flex-flow(row nowrap);
+  margin-bottom: 16px;
+
+  div {
+    @include align-self(center);
+    @include flex(1 0 auto);
+    margin: 0 4px;
+  }
+
+  div:first-child {
+    margin-left: 0;
+  }
+
+  div:last-child {
+    margin-right: 0;
+  }
+
+  div:last-child {
+    @include flex(0 1 auto);
+    max-width: 150px;
+  }
+
+  select {
+    max-width: inherit;
+  }
+
+  input {
+    @include border-radius(0.25em);
+    background-color: $box-background-color;
+    border: 1px solid $box-border-color;
+    color: inherit;
+    font: inherit;
+    padding: 8px;
+    position: relative;
+    width: 100%;
+  }
+}

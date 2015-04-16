@@ -1,0 +1,24 @@
+* {
+  @include box-sizing(border-box);
+}
+
+body {
+  color: $base-font-color;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 14px;
+  line-height: 1.4em;
+}
+
+a {
+  color: $link-font-color;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $link-font-color-hover;
+  text-decoration: underline;
+}
+
+.container {
+  padding: 16px;
+}

@@ -1,0 +1,17 @@
+<form class="search">
+  <div>
+    <input id="search" name="search" placeholder="Search for repositories" type="text" data-list=".repositories">
+  </div>
+
+  <div>
+    <select id="select">
+      <option value="<%= repos_path %>">Overview</option>
+      <% @all_repos.each do |login, repos| %>
+        <option value="<%= repos_path(login) %>" <%= "selected" if request.path == repos_path(login) %>>
+          <%= login %>
+        </option>
+      <% end %>
+      </optgroup>
+    </select>
+  </div>
+</form>

@@ -1,0 +1,17 @@
+<% if @jobs.any? %>
+  <ul class="list">
+    <% last_coverage_percentage = nil %>
+    <% @jobs.each_with_index do |job, i| %>
+      <li class="<%= coverage_class(job.coverage_percentage) %> <%= coverage_trend(job.coverage_percentage, @jobs[i+1].try(&:coverage_percentage)) %>">
+        <div>
+          <%= link_to("Build ##{job.service_job_id.split("/").last}", source_files_path(job.repo.login, job.repo.name, job)) %>
+          - <%= job.branch %>
+          - <%= job.coverage_percentage %>%
+          - <%= time_ago_in_words(job.created_at)%> ago
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are no Jobs yet.</p>
+<% end %>

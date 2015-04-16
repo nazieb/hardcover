@@ -1,0 +1,18 @@
+<div class="header">
+  <%= link_to("Hardcover", root_path, class: "logo", title: "Hardcover – hardly covered!") %>
+  <div class="navigation">
+    <% if current_user %>
+      <a href="#">
+        <%= image_tag(avatar_url, { height: 25 }) %>
+        <%= current_user.name %>
+      </a>
+      <ul class="menu">
+        <li><%= link_to("Repos", repos_path) %></li>
+        <li><%= link_to("Sync Repos", fetch_repos_path) %></li>
+        <li><%= link_to("Signout", signout_path) %>
+      </ul>
+    <% else %>
+      <a href="/auth/github/">Sign in with Github</a>
+    <% end %>
+  </div>
+</div>

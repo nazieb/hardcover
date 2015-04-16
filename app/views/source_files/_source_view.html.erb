@@ -1,0 +1,26 @@
+<div class="source-view">
+  <div class="caption">
+    <%= image_tag(badge_url(@repo.login, @repo.name, @job.id, @file.id) + ".svg?style=flat-square") %>
+    <span><%= @file.name %></span>
+  </div>
+  <div class="source">
+    <table>
+      <tbody>
+      <% @lines.each_with_index do |line, index| %>
+        <% index += 1 %>
+        <tr class="<%= coverage_status_for_line(@file, index-1) %>">
+          <td class="num" id="#L<%= index %>">
+            <a href="#L<%= index %>"><%= index %></a>
+          </td>
+          <td class="src">
+            <pre><%= line %></pre>
+          </td>
+          <td class="coverage">
+            <%= badge_for_line(@file, index-1) %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

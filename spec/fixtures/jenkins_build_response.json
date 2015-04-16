@@ -1,0 +1,126 @@
+{
+  "actions" : [
+  {
+    "causes" : [
+    {
+      "shortDescription" : "Started by an SCM change"
+    }
+    ]
+  },
+  {
+
+  },
+  {
+    "parameters" : [
+    {
+      "name" : "OS",
+      "value" : "7.1"
+    }
+    ]
+  },
+  {
+
+  },
+  {
+    "buildsByBranchName" : {
+      "origin/master" : {
+        "buildNumber" : 33,
+        "buildResult" : null,
+        "marked" : {
+          "SHA1" : "4fb1c8a913e2600e88bc96ffbed414460906bd22",
+          "branch" : [
+          {
+            "SHA1" : "4fb1c8a913e2600e88bc96ffbed414460906bd22",
+            "name" : "origin/master"
+          }
+          ]
+        },
+        "revision" : {
+          "SHA1" : "4fb1c8a913e2600e88bc96ffbed414460906bd22",
+          "branch" : [
+          {
+            "SHA1" : "4fb1c8a913e2600e88bc96ffbed414460906bd22",
+            "name" : "origin/master"
+          }
+          ]
+        }
+      }
+    },
+    "lastBuiltRevision" : {
+      "SHA1" : "4fb1c8a913e2600e88bc96ffbed414460906bd22",
+      "branch" : [
+      {
+      "SHA1" : "4fb1c8a913e2600e88bc96ffbed414460906bd22",
+        "name" : "origin/master"
+      }
+      ]
+    },
+    "remoteUrls" : [
+      "git://source.xing.com/ios-pods/XNGUnitTestHelper.git"
+      ],
+    "scmName" : ""
+  },
+  {
+
+  },
+  {
+
+  },
+  {
+
+  }
+  ],
+    "artifacts" : [
+
+      ],
+    "building" : false,
+    "description" : null,
+    "duration" : 102946,
+    "estimatedDuration" : 75492,
+    "executor" : null,
+    "fullDisplayName" : "iphone-XNGUnitTestHelper-unit-tests #33",
+    "id" : "2014-09-14_13-37-28",
+    "keepLog" : false,
+    "number" : 33,
+    "result" : "SUCCESS",
+    "timestamp" : 1410694648298,
+    "url" : "https://ci.example.com/job/iphone-XNGUnitTestHelper-unit-tests/33/",
+    "builtOn" : "test.ios.172-20-1-164",
+    "changeSet" : {
+      "items" : [
+      {
+        "affectedPaths" : [
+          "Example/Podfile",
+        "Example/Podfile.lock"
+          ],
+        "commitId" : "4fb1c8a913e2600e88bc96ffbed414460906bd22",
+        "timestamp" : 1410694629000,
+        "author" : {
+          "absoluteUrl" : "https://ci.example.com/user/piet.brauer",
+          "fullName" : "Piet Brauer"
+        },
+        "comment" : "Update DataModel\n",
+        "date" : "2014-09-14T13:37:09+0200 +0200",
+        "id" : "4fb1c8a913e2600e88bc96ffbed414460906bd22",
+        "msg" : "Update DataModel",
+        "paths" : [
+        {
+          "editType" : "edit",
+          "file" : "Example/Podfile"
+        },
+        {
+          "editType" : "edit",
+          "file" : "Example/Podfile.lock"
+        }
+        ]
+      }
+      ],
+        "kind" : "git"
+    },
+    "culprits" : [
+    {
+      "absoluteUrl" : "https://ci.example.com/user/piet.brauer",
+      "fullName" : "Piet Brauer"
+    }
+  ]
+}

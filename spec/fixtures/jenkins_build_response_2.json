@@ -1,0 +1,171 @@
+{
+  "actions" : [
+  {
+    "parameters" : [
+    {
+      "name" : "OS",
+      "value" : "8.0"
+    },
+    {
+      "name" : "IOS_SDK_VERSION",
+      "value" : "8.0"
+    },
+    {
+      "name" : "DEVICE_TYPE",
+      "value" : "iPhone-5s"
+    }
+    ]
+  },
+  {
+    "causes" : [
+    {
+      "shortDescription" : "Started by user Piet Brauer",
+      "userId" : "piet.brauer",
+      "userName" : "Piet Brauer"
+    }
+    ]
+  },
+  {
+
+  },
+  {
+    "buildsByBranchName" : {
+      "origin/remove_ios6" : {
+        "buildNumber" : 56,
+        "buildResult" : null,
+        "marked" : {
+          "SHA1" : "6a48b52689a91817e4cdaa4b6df71c059ad08dfb",
+          "branch" : [
+          {
+            "SHA1" : "6a48b52689a91817e4cdaa4b6df71c059ad08dfb",
+            "name" : "origin/remove_ios6"
+          }
+          ]
+        },
+        "revision" : {
+          "SHA1" : "6a48b52689a91817e4cdaa4b6df71c059ad08dfb",
+          "branch" : [
+          {
+            "SHA1" : "6a48b52689a91817e4cdaa4b6df71c059ad08dfb",
+            "name" : "origin/remove_ios6"
+          }
+          ]
+        }
+      },
+      "origin/master" : {
+        "buildNumber" : 74,
+        "buildResult" : null,
+        "marked" : {
+          "SHA1" : "69bf025131476911fa4ed02e9a86e2df3af74e8b",
+          "branch" : [
+          {
+            "SHA1" : "69bf025131476911fa4ed02e9a86e2df3af74e8b",
+            "name" : "origin/master"
+          }
+          ]
+        },
+        "revision" : {
+          "SHA1" : "69bf025131476911fa4ed02e9a86e2df3af74e8b",
+          "branch" : [
+          {
+            "SHA1" : "69bf025131476911fa4ed02e9a86e2df3af74e8b",
+            "name" : "origin/master"
+          }
+          ]
+        }
+      },
+      "origin/content" : {
+        "buildNumber" : 50,
+        "buildResult" : null,
+        "marked" : {
+          "SHA1" : "135b6871948a2214dfc7e6ff55b2d83d4d47e7d7",
+          "branch" : [
+          {
+            "SHA1" : "135b6871948a2214dfc7e6ff55b2d83d4d47e7d7",
+            "name" : "origin/content"
+          }
+          ]
+        },
+        "revision" : {
+          "SHA1" : "135b6871948a2214dfc7e6ff55b2d83d4d47e7d7",
+          "branch" : [
+          {
+            "SHA1" : "135b6871948a2214dfc7e6ff55b2d83d4d47e7d7",
+            "name" : "origin/content"
+          }
+          ]
+        }
+      },
+      "origin/customField" : {
+        "buildNumber" : 32,
+        "buildResult" : null,
+        "marked" : {
+          "SHA1" : "7c5fb79429b64ce785369ba2e701eb739ef0b35f",
+          "branch" : [
+          {
+            "SHA1" : "7c5fb79429b64ce785369ba2e701eb739ef0b35f",
+            "name" : "origin/customField"
+          }
+          ]
+        },
+        "revision" : {
+          "SHA1" : "7c5fb79429b64ce785369ba2e701eb739ef0b35f",
+          "branch" : [
+          {
+            "SHA1" : "7c5fb79429b64ce785369ba2e701eb739ef0b35f",
+            "name" : "origin/customField"
+          }
+          ]
+        }
+      }
+    },
+    "lastBuiltRevision" : {
+      "SHA1" : "69bf025131476911fa4ed02e9a86e2df3af74e8b",
+      "branch" : [
+      {
+        "SHA1" : "69bf025131476911fa4ed02e9a86e2df3af74e8b",
+        "name" : "origin/master"
+      }
+      ]
+    },
+    "remoteUrls" : [
+      "git://source.xing.com/ios-pods/Tracker.git"
+      ],
+    "scmName" : ""
+  },
+  {
+
+  },
+  {
+
+  },
+  {
+
+  }
+  ],
+    "artifacts" : [
+
+      ],
+    "building" : false,
+    "description" : null,
+    "duration" : 70831,
+    "estimatedDuration" : 79050,
+    "executor" : null,
+    "fullDisplayName" : "iphone-Tracker-unit-tests #74",
+    "id" : "2014-10-28_11-44-25",
+    "keepLog" : false,
+    "number" : 74,
+    "result" : "SUCCESS",
+    "timestamp" : 1414493065621,
+    "url" : "http://ci.example.com/view/Mobile/job/iphone-Tracker-unit-tests/74/",
+    "builtOn" : "test.ios.172-20-1-164",
+    "changeSet" : {
+      "items" : [
+
+        ],
+      "kind" : "git"
+    },
+    "culprits" : [
+
+      ]
+}

@@ -1,0 +1,8 @@
+<ol class="breadcrumb">
+  <% crumbs.each do |crumb| %>
+    <% active = "active" if crumb == crumbs.last %>
+    <li class="<%= active %>">
+      <%= link_to(crumb[:title], crumb[:link]) %>
+    </li>
+  <% end %>
+</ol>

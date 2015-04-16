@@ -1,0 +1,12 @@
+<ul class="repositories list">
+  <% @repos.each do |login, repos| %>
+    <% repos.each do |repo| %>
+      <% coverage_percentage = repo.jobs.last ? repo.jobs.last.coverage_percentage : nil %>
+      <li class="<%= coverage_class(coverage_percentage) %>">
+        <div>
+          <%= link_to(repo.full_name, jobs_path(repo.login, repo.name)) %>
+        </div>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

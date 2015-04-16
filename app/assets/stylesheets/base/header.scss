@@ -1,0 +1,62 @@
+.header {
+  @include pie-clearfix;
+  background-color: $box-background-color;
+  border-bottom: 1px solid $box-border-color;
+  padding: 8px 16px;
+  position: relative;
+}
+
+.header .logo {
+  background-image: url(asset_path("logo_small.png"));
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: transparent;
+  display: block;
+  height: 30px;
+  left: 16px;
+  position: absolute;
+  top: 10px;
+  width: 140px;
+}
+
+.header .menu {
+  @include box-shadow($base-font-color 2px 2px 4px -2px);
+  display: none;
+  margin-top: 8px;
+  padding-top: 1px;
+  position: absolute;
+  z-index: 1;
+
+  a {
+    background-color: $box-background-color;
+    border-bottom: 1px solid $box-border-color;
+    display: block;
+    padding: 8px 16px;
+  }
+}
+
+.header .navigation {
+  display: block;
+  float: right;
+  margin-bottom: -8px;
+  padding-bottom: 8px;
+
+  img {
+    float: left;
+    margin-right: 8px;
+    position: relative;
+    top: -4px;
+  }
+
+  & > a {
+    @include pie-clearfix;
+    display: block;
+    min-height: 25px;
+    position: relative;
+    top: 4px;
+  }
+
+  &:hover .menu {
+    display: block;
+  }
+}

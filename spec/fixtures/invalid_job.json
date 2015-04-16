@@ -1,0 +1,50 @@
+{
+  "service_job_id": "iphone-app-unit-tests/1248",
+  "service_name": "my-own-ci-server",
+  "repo_token": "d41d8cd98f00b204e9800998ecf8427e",
+  "source_files": [
+  {
+    "name": "XNGOAuth1Client/NSDictionary+XNGOAuth1Additions.m",
+    "source": "#import \"NSDictionary+XNGOAuth1Additions.h\"\n#import \"NSString+XNGOAuth1Additions.h\"\n\n@implementation NSDictionary (XNGOAuth1Additions)\n\n+ (id)xng_dictionaryFromQueryString:(NSString *)queryString {\n    return [[NSDictionary alloc] xng_initWithQueryString:queryString];\n}\n\n- (id)xng_initWithQueryString:(NSString *)queryString {\n    NSArray *components = [queryString componentsSeparatedByString:@\"&\"];\n    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];\n\n    for (NSString *component in components) {\n        NSArray *keyValue = [component componentsSeparatedByString:@\"=\"];\n        NSString *key = [keyValue[0] xng_URLDecode];\n        NSString *value = [keyValue[1] xng_URLDecode];\n        dictionary[key] = value;\n    }\n\n    return dictionary;\n}\n\n- (NSString *)xng_queryStringRepresentation {\n    NSMutableArray *paramArray = [NSMutableArray array];\n\n    [self enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {\n        NSString *param = [NSString stringWithFormat:@\"%@=%@\", [key xng_URLEncode], [value xng_URLEncode]];\n        [paramArray addObject:param];\n    }];\n\n    return [paramArray componentsJoinedByString:@\"&\"];\n}\n\n\n\n@end\n",
+    "coverage": [
+      null,
+    null,
+    null,
+    null,
+    null,
+    3,
+    3,
+    3,
+    null,
+    4,
+    4,
+    4,
+    null,
+    28,
+    10,
+    10,
+    10,
+    10,
+    28,
+    null,
+    4,
+    4,
+    null,
+    null,
+    3,
+    null,
+    3,
+    2,
+    2,
+    2,
+    null,
+    1,
+    1,
+    null,
+    null,
+    null,
+    null
+      ]
+  }
+  ]
+}

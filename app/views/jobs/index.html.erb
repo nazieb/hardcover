@@ -1,0 +1,14 @@
+<%= render partial: "shared/breadcrumb" %>
+
+<div class="info">
+  <dl>
+    <dt>Repo-Token</dt>
+    <dd><%= @repo.repo_token %></dd>
+  </dl>
+  <dl>
+    <dt>Badge URL</dt>
+    <dd><%= repo_badge_md(@repo) %></dd>
+  </dl>
+</div>
+
+<%= render partial: 'jobs' %>
