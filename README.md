@@ -108,6 +108,14 @@ export COVERALLS_ENDPOINT="https://hardcover.xing.hh"
 ...
 ```
 
+## Contributions
+
+* Main development: [@matthias-maennich](https://github.com/matthias-maennich) [@pietbrauer](https://github.com/pietbrauer)
+* Frontend art: [@m0rk](https://github.com/m0rk)
+* Major optimizations & Badges: [@hujiko](https://github.com/hujiko)
+
+[Full list](https://github.com/xing/hardcover/graphs/contributors)
+
 ## Contact
 
 XING AG
