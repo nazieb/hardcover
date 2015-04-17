@@ -18,6 +18,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "logjam_agent"
 gem "bunny", "~> 0.7.9"
 
+group :production do
+  gem 'pg'
+end
+
 group :test do
   gem "rspec-rails"
   gem 'coveralls', require: false
