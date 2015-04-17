@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417065354) do
+ActiveRecord::Schema.define(version: 20150227154746) do
 
   create_table "jobs", force: true do |t|
     t.string   "service_job_id"
@@ -38,20 +38,15 @@ ActiveRecord::Schema.define(version: 20150417065354) do
 
   create_table "source_files", force: true do |t|
     t.string   "name"
-    t.text     "source",              limit: 16777215
+    t.text     "source"
     t.text     "coverage"
     t.integer  "job_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "coverage_percentage",                  precision: 5, scale: 2
+    t.decimal  "coverage_percentage", precision: 5, scale: 2
   end
 
   add_index "source_files", ["job_id"], name: "index_source_files_on_job_id", using: :btree
-
-  create_table "user_repos", force: true do |t|
-    t.integer "user_id"
-    t.integer "repo_id"
-  end
 
   create_table "users", force: true do |t|
     t.string   "provider"
