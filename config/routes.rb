@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   root to: "repos#index"
 
   # sessions_controller
-  get "/auth/:provider/callback" => "sessions#create"
-  get "/signout" => "sessions#destroy", :as => :signout
+  # get "/auth/:provider/callback" => "sessions#create"
+  # get "/signout" => "sessions#destroy", :as => :signout
 
   # badges_controller
   get "/repos/:org/:repo_name(/:job_id)(/:source_id)/badge" => "badges#show", :as => :badge
