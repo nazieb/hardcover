@@ -4,11 +4,11 @@ class ReposController < ApplicationController
 
   def index
     if org = params[:org]
-      @repos = Repo.where(login: org).group_by(&:login)
+      @repos = Repo.where(login: org).where(is_private: false).group_by(&:login)
       @all_repos = Repo.all.group_by(&:login)
       not_found if @repos.none?
     else
-      @repos = Repo.all.preload(:jobs).group_by(&:login)
+      @repos = Repo.all.preload(:jobs).where(is_private: false).group_by(&:login)
       @all_repos = @repos
     end
   end
