@@ -12,6 +12,7 @@ class Repo < ActiveRecord::Base
     repo.login = params[:owner][:login]
     repo.full_name = params[:full_name]
     repo.name = params[:name]
+    repo.is_private = params[:private]
     repo.set_repo_token
     repo
   end
@@ -27,5 +28,17 @@ class Repo < ActiveRecord::Base
 
   def job_for_branch(branch)
     self.jobs.where(branch: branch).last
+  end
+
+  def user_has_access?(user)
+    granted = false
+    unless self.is_private?
+      return true
+    end
+    if user
+      client = Octokit::Client.new(access_token: user.access_token)
+      granted = client.collaborator?(full_name, login)
+    end
+    granted
   end
 end
