@@ -1,4 +1,4 @@
-development:
+production:
   # Jenkins Config
   jenkins_base_url: "http://ci.example.com"
   jenkins_use_ssl: false
