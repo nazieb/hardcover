@@ -69,16 +69,16 @@ RSpec.describe Job, :type => :model do
 
     it "returns decreased" do
       allow(@master).to receive(:coverage_percentage) { 100 }
-      expect(@subject.send(:relative_coverage, @master)).to eq([:decreased, -100])
+      expect(@subject.send(:relative_coverage, @master)).to eq([:decreased, -100, "failure"])
     end
 
     it "returns increased" do
       allow(@subject).to receive(:coverage_percentage) { 100 }
-      expect(@subject.send(:relative_coverage, @master)).to eq([:increased, 100])
+      expect(@subject.send(:relative_coverage, @master)).to eq([:increased, 100, "success"])
     end
 
     it "returns equal" do
-      expect(@subject.send(:relative_coverage, @master)).to eq([:equal, 0])
+      expect(@subject.send(:relative_coverage, @master)).to eq([:equal, 0, "success"])
     end
   end
 
@@ -153,6 +153,7 @@ RSpec.describe Job, :type => :model do
                 state: "success" }
       @stub = stub_request(:post, url).with(body: json.to_json).to_return(status: 200)
     end
+
     it "sets a status" do
       subject = Job.new(id: 1)
       allow(subject).to receive(:coverage_percentage) { 5 }

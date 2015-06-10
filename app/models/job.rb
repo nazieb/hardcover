@@ -67,11 +67,12 @@ class Job < ActiveRecord::Base
   def github_add_status(full_name)
     client = Octokit::Client.new(access_token: APP_CONFIG['github_user_access_token'])
     opts = {
-      target_url: source_files_url(self.repo.login, self.repo.name, self.id),
+      target_url: source_files_url(repo.login, repo.name, id),
       context: "hardcover",
       description: comment
     }
-    client.create_status(full_name, self.sha, 'success', opts)
+    _, _, status = relative_coverage(repo.last_job(branch))
+    client.create_status(full_name, sha, status, opts)
   end
 
   def should_comment?(service_name)
@@ -101,7 +102,7 @@ class Job < ActiveRecord::Base
   def relative_cov_comment(master_job)
     current_cov = self.coverage_percentage.round(2)
     if master_job
-      relative, diff_cov = relative_coverage(master_job)
+      relative, diff_cov, _ = relative_coverage(master_job)
       diff_cov = diff_cov.round(2)
       case relative
       when :increased
@@ -118,15 +119,19 @@ class Job < ActiveRecord::Base
   end
 
   def relative_coverage(master_job)
-    current_cov = self.coverage_percentage
-    master_cov = master_job.coverage_percentage
-    diff_cov = current_cov - master_cov
-    if master_cov < current_cov
-      return :increased, diff_cov
-    elsif master_cov == current_cov
-      return :equal, diff_cov
+    current_cov = coverage_percentage
+    if master_job
+      master_cov = master_job.coverage_percentage
+      diff_cov = current_cov - master_cov
+      if master_cov < current_cov
+        return :increased, diff_cov, "success"
+      elsif master_cov == current_cov
+        return :equal, diff_cov, "success"
+      else
+        return :decreased, diff_cov, "failure"
+      end
     else
-      return :decreased, diff_cov
+      return :increased, current_cov, "success"
     end
   end
 
