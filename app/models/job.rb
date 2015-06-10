@@ -48,7 +48,7 @@ class Job < ActiveRecord::Base
     if should_comment? service_name
       branch = jenkins_get_branch
       pr = github_pr(repo.full_name, branch)
-      github_add_comment(repo.full_name, pr[:number], comment(pr[:base][:ref])) if pr
+      github_add_status(repo.full_name) if pr
     end
   end
 
@@ -64,11 +64,14 @@ class Job < ActiveRecord::Base
     end
   end
 
-  def github_add_comment(full_name, pr_id, comment)
-    if pr_id != 0
-      client = Octokit::Client.new(access_token: APP_CONFIG['github_user_access_token'])
-      client.add_comment(full_name, pr_id, comment, {})
-    end
+  def github_add_status(full_name)
+    client = Octokit::Client.new(access_token: APP_CONFIG['github_user_access_token'])
+    opts = {
+      target_url: source_files_url(self.repo.login, self.repo.name, self.id),
+      context: "hardcover",
+      description: comment
+    }
+    client.create_status(full_name, self.sha, 'success', opts)
   end
 
   def should_comment?(service_name)
@@ -92,25 +95,24 @@ class Job < ActiveRecord::Base
   end
 
   def comment(branch="master")
-    comment = relative_cov_comment(self.repo.last_job(branch))
-    badge_url = badge_url(self.repo.login, self.repo.name, self.id)
-    "[![](#{badge_url}.svg?style=flat-square)](#{source_files_url(self.repo.login, self.repo.name, self.id)})\n\n#{comment}"
+    relative_cov_comment(self.repo.last_job(branch))
   end
 
   def relative_cov_comment(master_job)
+    current_cov = self.coverage_percentage.round(2)
     if master_job
       relative, diff_cov = relative_coverage(master_job)
       diff_cov = diff_cov.round(2)
       case relative
       when :increased
-        comment = "Coverage increased (#{diff_cov} %) when pulling **#{self.branch}** into **#{master_job.branch}**."
+        comment = "Coverage increased (#{diff_cov} %) to #{current_cov} %."
       when :equal
-        comment = "Coverage remained the same when pulling **#{self.branch}** into **#{master_job.branch}**."
+        comment = "Coverage remained the same."
       when :decreased
-        comment = "Coverage decreased (#{diff_cov} %) when pulling **#{self.branch}** into **#{master_job.branch}**."
+        comment = "Coverage decreased (#{diff_cov} %) to #{current_cov} %."
       end
     else
-      comment = "Coverage increased (#{self.coverage_percentage.round(2)} %) when pulling **#{self.branch}** into **master**."
+      comment = "Coverage is at #{current_cov} %."
     end
     comment
   end
