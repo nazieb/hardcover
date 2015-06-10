@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227154746) do
+ActiveRecord::Schema.define(version: 20150610113947) do
 
   create_table "jobs", force: true do |t|
     t.string   "service_job_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150227154746) do
     t.string   "repo_token"
     t.string   "branch"
     t.decimal  "coverage",       precision: 5, scale: 2
+    t.string   "sha"
   end
 
   add_index "jobs", ["repo_id"], name: "index_jobs_on_repo_id", using: :btree
@@ -47,11 +48,6 @@ ActiveRecord::Schema.define(version: 20150227154746) do
   end
 
   add_index "source_files", ["job_id"], name: "index_source_files_on_job_id", using: :btree
-
-  create_table "user_repos", force: true do |t|
-    t.integer "user_id"
-    t.integer "repo_id"
-  end
 
   create_table "users", force: true do |t|
     t.string   "provider"

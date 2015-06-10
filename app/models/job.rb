@@ -85,6 +85,7 @@ class Job < ActiveRecord::Base
     when Net::HTTPSuccess
       build = JenkinsBuild.new(JSON.parse(response.body, symbolize_names: true))
       self.branch = build.branch
+      self.sha = build.sha1
     end
     self.save
     self.branch
