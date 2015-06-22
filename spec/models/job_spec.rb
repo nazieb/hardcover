@@ -20,9 +20,7 @@ RSpec.describe Job, :type => :model do
     expect(subject.coverage_percentage.to_f).to eq(88.24)
     expect(subject.repo_token.length).to eq(32)
     expect(subject.repo).to eq(@repo)
-    link = "http://hardcover.xing.hh/repos/octocat/Hello-World/#{subject.id}"
-    mdown_comment = "[![](#{link}/badge.svg?style=flat-square)](#{link})\n\nCoverage increased (88.24 %) when pulling **feature** into **master**."
-    expect(subject.send(:comment)).to eq(mdown_comment)
+    expect(subject.send(:comment)).to eq("Coverage is at 88.24 %.")
   end
 
   describe "#validation" do
@@ -71,16 +69,16 @@ RSpec.describe Job, :type => :model do
 
     it "returns decreased" do
       allow(@master).to receive(:coverage_percentage) { 100 }
-      expect(@subject.send(:relative_coverage, @master)).to eq([:decreased, -100])
+      expect(@subject.send(:relative_coverage, @master)).to eq([:decreased, -100, "failure"])
     end
 
     it "returns increased" do
       allow(@subject).to receive(:coverage_percentage) { 100 }
-      expect(@subject.send(:relative_coverage, @master)).to eq([:increased, 100])
+      expect(@subject.send(:relative_coverage, @master)).to eq([:increased, 100, "success"])
     end
 
     it "returns equal" do
-      expect(@subject.send(:relative_coverage, @master)).to eq([:equal, 0])
+      expect(@subject.send(:relative_coverage, @master)).to eq([:equal, 0, "success"])
     end
   end
 
@@ -94,7 +92,7 @@ RSpec.describe Job, :type => :model do
       allow(subject).to receive(:repo) { repo }
       expect(subject).to receive(:github_pr) { { number: 1, base: { ref: "master" } } }
       allow(subject).to receive(:comment) { "comment" }
-      expect(subject).to receive(:github_add_comment).with("octocat/Hello-World", 1, "comment")
+      expect(subject).to receive(:github_add_status).with("octocat/Hello-World")
       subject.send(:comment_on_pull_request)
     end
   end
@@ -110,19 +108,19 @@ RSpec.describe Job, :type => :model do
     end
 
     it "returns decreased" do
-      expected = "Coverage decreased (-100.0 %) when pulling **branch** into **master**."
+      expected = "Coverage decreased (-100.0 %) to 0.0 %."
       allow(@master).to receive(:coverage_percentage) { 100 }
       expect(@subject.send(:relative_cov_comment, @master)).to eq(expected)
     end
 
     it "returns increased" do
-      expected = "Coverage increased (100.0 %) when pulling **branch** into **master**."
+      expected = "Coverage increased (100.0 %) to 100.0 %."
       allow(@subject).to receive(:coverage_percentage) { 100 }
       expect(@subject.send(:relative_cov_comment, @master)).to eq(expected)
     end
 
     it "returns equal" do
-      expected = "Coverage remained the same when pulling **branch** into **master**."
+      expected = "Coverage remained the same."
       expect(@subject.send(:relative_cov_comment, @master)).to eq(expected)
     end
   end
@@ -146,19 +144,23 @@ RSpec.describe Job, :type => :model do
     end
   end
 
-  describe "#github_add_comment" do
-    it "comments" do
-      @url = "https://github.com/api/v3/repos/octocat/Hello-World/issues/1/comments"
-      stub = stub_request(:post, @url).with(body: "{\"body\":\"test comment\"}").to_return(status: 200)
-
-      subject = Job.new
-      subject.send(:github_add_comment, "octocat/Hello-World", 1, "test comment")
-      expect(stub).to have_been_requested
+  describe "#github_add_status" do
+    before do
+      url = "https://github.com/api/v3/repos/octocat/Hello-World/statuses/49857430582"
+      json = { target_url: "http://hardcover.xing.hh/repos/octocat/Hello-World/1",
+                context: "hardcover",
+                description: "Coverage is at 5.0 %.",
+                state: "success" }
+      @stub = stub_request(:post, url).with(body: json.to_json).to_return(status: 200)
     end
 
-    it "does nothing if number is 0" do
-      subject = Job.new
-      subject.send(:github_add_comment, "octocat/Hello-World", 0, "Should not work")
+    it "sets a status" do
+      subject = Job.new(id: 1)
+      allow(subject).to receive(:coverage_percentage) { 5 }
+      allow(subject).to receive(:sha) { "49857430582" }
+      subject.repo = @repo
+      subject.send(:github_add_status, "octocat/Hello-World")
+      expect(@stub).to have_been_requested
     end
   end
 
