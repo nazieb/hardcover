@@ -12,7 +12,7 @@ Hardcover takes your coverage reports and stores them on the server, comments on
 
 We know, a GIF says more than 1000 words. But a demo says more than 1000 GIFs so we made one:
 
-[Demo](https://damp-shore-4827.herokuapp.com)
+[Demo](https://hardcover-demo.herokuapp.com/)
 
 ## Deployment
 ### Testing locally
