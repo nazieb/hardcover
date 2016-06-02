@@ -10,6 +10,11 @@
         - mysql-server
         - mysql-client
         - libmysqlclient-dev
+        - imagemagick
+        - libmagickwand-dev
+        - build-essential
+        - g++
+        - nodejs
 
     - name: Symlink exists for Ruby 2.0
       file: src=/usr/bin/ruby2.0 dest=/usr/local/bin/ruby state=link
